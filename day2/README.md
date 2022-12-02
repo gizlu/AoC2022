@@ -14,7 +14,7 @@ END { print points }'
 - Convert encoding into more readable notation (R)ock, (P)aper, (S)cisors, (L)ose, (D)raw, (W)in
 - Create lookup table for score couting and compute score
 ```sh
-tr 'ABCXYZ' 'RPSLDW' <$1 | # convert input to more readable notation: (R)ock, (P)aper, (S)cisors, (L)ose, (D)raw, (W)in
+tr 'ABCXYZ' 'RPSLDW' <$1 |
 awk 'BEGIN {
 LUT["RD"]=4; LUT["PD"]=5; LUT["SD"]=6; # draws
 LUT["SW"]=7; LUT["RW"]=8; LUT["PW"]=9; # wins
