@@ -2,7 +2,7 @@
 - build lookup table for priorities
 - for each line find item present in both compartments and add its piority to sum
 
-```sh
+```awk
 awk -F '' '
 BEGIN{ for(i=0; i<26;i++) LUT[sprintf("%c",i+97)]=i+1; } # a-z (97 - "a" ascii code)
 BEGIN{ for(i=0; i<26;i++) LUT[sprintf("%c",i+65)]=i+27; } # A-Z (65 - "A" ascii code)
@@ -15,7 +15,7 @@ BEGIN{ for(i=0; i<26;i++) LUT[sprintf("%c",i+65)]=i+27; } # A-Z (65 - "A" ascii 
 - join every group of 3 lines into one line
 - build lookup table for priorities
 - for each group find item present in all 3 rucksacks and add its piority to sum
-```sh
+```awk
 xargs -n3 <in.txt | awk '
 BEGIN{ for(i=0; i<26;i++) LUT[sprintf("%c",i+97)]=i+1; } # a-z (97 - "a" ascii code)
 BEGIN{ for(i=0; i<26;i++) LUT[sprintf("%c",i+65)]=i+27; } # A-Z (65 - "A" ascii code)
