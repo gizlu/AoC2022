@@ -20,7 +20,7 @@ Like task1 but with slightly modified `move` command behaviour:
 if multiple packages are moved using single invokation, they are relocated as is (resulting stack fragment is ordered like orginal)
 
 ```awk
-sed 's/    / 0 /g' <in.txt | tr -d '[]' | awk --lint '
+sed 's/    / 0 /g' <in.txt | tr -d '[]' | awk '
 NR==1 { stacks=NF; for(i=1; i<=NF; ++i) heads[i]=1; }
 $1!=1 && $1!="move" { for(i = 1; i<=NF; ++i) { if($i==0) {heads[i]++} else ARR[i,NR]=$i } }
 $1=="move" { for(i=$2; i>=1; --i) ARR[$6,heads[$6]-i] = ARR[$4,heads[$4]++]; heads[$6]-=$2; }
