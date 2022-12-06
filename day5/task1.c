@@ -3,7 +3,7 @@
 #include <string.h>
 
 typedef struct Stack { char arr[256]; uint8_t head; } Stack;
-void push(Stack* s, char ch) { if(ch>='A' && ch<='Z') s->arr[++s->head] = ch; }
+void push(Stack* s, char ch) { if(ch>='A' && ch<='Z') s->arr[++s->head] = ch; } //  ignore non-letters
 char pop(Stack* s) { return s->arr[s->head--]; }
 
 #define SWAP_CH(x,y) { char tmp=x; x=y; y=tmp; }
@@ -14,7 +14,7 @@ void reverse(Stack* s) {
 int main()
 {
     Stack stacks[256] = {0}; // stacks[0] and stacks[i].arr[0] are unused
-    char buf[256]; // we assume that all lines fit in buffer
+    char buf[256];
 
     char ch, sep, lastStack = 0;
     while(fgets(buf, 256, stdin) != NULL && buf[0] != '\n') { // read till empty line
