@@ -7,9 +7,6 @@ BEGIN { N = -1 }
 /Test/ { TEST[N]=$4 } # assume that only divisilibity is tested
 /true/ { TRUE_TROW[N]=$6 }
 /false/ { FALSE_TROW[N]=$6; }
-# /false/ { print_monke(N); 
-# print "test:"TEST[N]; print "FALSE:"FALSE_TROW[N]; print "TRUE:"TRUE_TROW[N]
-# print "operandA:"operandA[N]; print "operator:"operator[N]; print "operandB:"operandB[N];}
 
 function inspect(monke_n, item_n,
 i,a,op,b,new)
@@ -26,10 +23,8 @@ i,a,op,b,new)
 function throw(monke_n, item_n, 
 i,new_monke_n)
 {
-    # print TEST[monke_n]; print ITEMS[monke_n,item_n]
     if(ITEMS[monke_n,item_n] % TEST[monke_n] == 0) new_monke_n=TRUE_TROW[monke_n];
     else new_monke_n=FALSE_TROW[monke_n];
-    # print FALSE_TROW[monke_n];
     COUNT[new_monke_n]++;
     ITEMS[new_monke_n,COUNT[new_monke_n]]=ITEMS[monke_n,item_n];
 }
@@ -39,7 +34,6 @@ i)
     for(i=1;i<=COUNT[monke_n];++i) {
         inspect(monke_n, i);
         throw(monke_n, i);
-        # delete ITEMS[monke_n,i]
     }
     COUNT[monke_n]=0;
 }
@@ -50,20 +44,9 @@ function print_monke(monke_n, i)
     }
     print ""
 }
-# function print_monke_verbose(monke_n)
-# {
-#     printf "TEST:"TEST[monke_n]" TRUE "
-# }
 function round(i)
 {
-    # turn(0); print_monke(2); print_monke(3);
-    for(i=0;i<=N;++i) { turn(i);
-        # printf "%d ", FALSE_TROW[i]; print_monke(FALSE_TROW[i]);
-        # printf "%d ", TRUE_TROW[i]; print_monke(TRUE_TROW[i]);
-    }
-    # for(i=0;i<=N;++i) { print_monke(i); }
-    # for(i=0;i<=N;++i) { turn(i) }
-    # for(i=0;i<=N;++i) { print_monke(i); }
+    for(i=0;i<=N;++i) turn(i);
 }
 END { for(i=0;i<20;++i) round(); }
 END { for(i in inspections) print inspections[i]}
